@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Case Management</h2>
+    <div class="btn-group">
+        <button class="btn btn-outline-primary">Add Case</button>
+        <button class="btn btn-outline-secondary">Export</button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">All Cases</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Case Number</th>
+                        <th>Case Name</th>
+                        <th>Category</th>
+                        <th>Legal Section</th>
+                        <th>Parties</th>
+                        <th>Status</th>
+                        <th>Next Hearing</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for case in cases %}
+                    <tr>
+                        <td><strong>{{ case.case_number }}</strong></td>
+                        <td>{{ case.case_name }}</td>
+                        <td>
+                            <span class="badge 
+                                {% if case.case_category == 'Criminal' %}bg-danger
+                                {% elif case.case_category == 'Civil' %}bg-primary
+                                {% elif case.case_category == 'Family' %}bg-warning
+                                {% else %}bg-secondary{% endif %}">
+                                {{ case.case_category }}
+                            </span>
+                        </td>
+                        <td><code>{{ case.legal_section }}</code></td>
+                        <td>{{ case.parties }}</td>
+                        <td>
+                            <span class="badge bg-info">{{ case.status }}</span>
+                        </td>
+                        <td>{{ case.next_hearing }}</td>
+                        <td>
+                            <a href="{{ url_for('case_details', case_id=case.id) }}" class="btn btn-sm btn-primary">View</a>
+                            <button class="btn btn-sm btn-success">Update</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

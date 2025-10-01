@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="text-center mb-0">Judge Login</h4>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+                
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" required placeholder="Enter username">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" required placeholder="Enter password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+                
+                <div class="mt-3 p-3 bg-light rounded">
+                    <h6>Demo Credentials:</h6>
+                    <div class="mb-2">
+                        <strong>Username:</strong> judge1<br>
+                        <strong>Password:</strong> password123
+                    </div>
+                    <small class="text-muted">Use these credentials to login</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

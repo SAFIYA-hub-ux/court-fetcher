@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Legal Research</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Search Legal Database</h5>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('search_legal') }}">
+            <div class="mb-3">
+                <label class="form-label">Search Keywords</label>
+                <input type="text" name="query" class="form-control" placeholder="Enter legal terms, case names, or sections" required>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Act/Category</label>
+                    <select name="act" class="form-select">
+                        <option value="">Select Act</option>
+                        <option value="Indian Penal Code">Indian Penal Code</option>
+                        <option value="Code of Criminal Procedure">Code of Criminal Procedure</option>
+                        <option value="Evidence Act">Evidence Act</option>
+                        <option value="Contract Act">Contract Act</option>
+                        <option value="Hindu Marriage Act">Hindu Marriage Act</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Section</label>
+                    <input type="text" name="section" class="form-control" placeholder="e.g., Section 302">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Search Legal Database</button>
+        </form>
+    </div>
+</div>
+
+<div class="card mt-4">
+    <div class="card-header">
+        <h5>Quick Legal Resources</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="list-group">
+                    <a href="https://indiankanoon.org" target="_blank" class="list-group-item list-group-item-action">
+                        <strong>Indian Kanoon</strong> - Case Law Database
+                    </a>
+                    <a href="https://main.sci.gov.in" target="_blank" class="list-group-item list-group-item-action">
+                        <strong>Supreme Court</strong> - Judgments Portal
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="list-group">
+                    <a href="https://www.indiacode.nic.in" target="_blank" class="list-group-item list-group-item-action">
+                        <strong>India Code</strong> - Legal Statutes
+                    </a>
+                    <a href="https://www.lawctopus.com" target="_blank" class="list-group-item list-group-item-action">
+                        <strong>Lawctopus</strong> - Legal Resources
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

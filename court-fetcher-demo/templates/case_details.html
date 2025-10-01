@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('cases') }}">Cases</a></li>
+                <li class="breadcrumb-item active">{{ case.case_number }}</li>
+            </ol>
+        </nav>
+
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Case Details: {{ case.case_number }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Case Information</h5>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th width="40%">Case Number:</th>
+                                <td><strong>{{ case.case_number }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th>Case Name:</th>
+                                <td>{{ case.case_name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Category:</th>
+                                <td>
+                                    <span class="badge 
+                                        {% if case.case_category == 'Criminal' %}bg-danger
+                                        {% elif case.case_category == 'Civil' %}bg-primary
+                                        {% else %}bg-warning{% endif %}">
+                                        {{ case.case_category }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Legal Section:</th>
+                                <td><code>{{ case.legal_section }}</code></td>
+                            </tr>
+                            <tr>
+                                <th>Parties:</th>
+                                <td>{{ case.parties }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Case Status</h5>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th width="40%">Current Status:</th>
+                                <td><span class="badge bg-info">{{ case.status }}</span></td>
+                            </tr>
+                            <tr>
+                                <th>Next Hearing:</th>
+                                <td><strong>{{ case.next_hearing }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th>Filing Date:</th>
+                                <td>{{ case.filing_date }}</td>
+                            </tr>
+                            <tr>
+                                <th>Assigned Judge:</th>
+                                <td>{{ case.judge }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h5>Case Description</h5>
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="mb-0">{{ case.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h5>Case Documents</h5>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action">
+                                📄 Charge Sheet (PDF)
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                📄 Evidence List (PDF)
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                📄 Witness Statements (PDF)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ url_for('cases') }}" class="btn btn-secondary">Back to Cases</a>
+                            <button class="btn btn-primary">Print Case Summary</button>
+                            <button class="btn btn-success">Update Status</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

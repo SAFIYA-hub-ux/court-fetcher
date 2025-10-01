@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Cause List</h2>
+
+<div class="card">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Today's Hearings</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Case Number</th>
+                        <th>Case Name</th>
+                        <th>Parties</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for case in cases %}
+                    <tr>
+                        <td><strong>10:00 AM</strong></td>
+                        <td>{{ case.case_number }}</td>
+                        <td>{{ case.case_name }}</td>
+                        <td>{{ case.parties }}</td>
+                        <td>Hearing</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
